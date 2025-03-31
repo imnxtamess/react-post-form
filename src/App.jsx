@@ -30,7 +30,7 @@ function App() {
     setIsSent(true);
     setInterval(() => {
       setIsSent(false);
-    }, 2500);
+    }, 3000);
   }
 
   function createData() {
@@ -118,7 +118,11 @@ function App() {
             <button type="submit" className="btn btn-light mt-3">
               Submit
             </button>
-            <div className={!isSent ? "d-none" : "btn btn-success mx-3 mt-3"}>
+            <div
+              className={
+                !isSent ? "d-none" : "btn btn-success mx-3 mt-3 transition"
+              }
+            >
               Form inviato con successo!
             </div>
           </div>

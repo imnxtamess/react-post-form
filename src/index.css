@@ -7,3 +7,16 @@
 body {
   background-color: rgb(24, 32, 39);
 }
+
+.transition {
+  animation: transizioneBanner 0.75s ease-in-out;
+}
+
+@keyframes transizioneBanner {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
