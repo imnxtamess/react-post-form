@@ -1,1 +1,9 @@
 @import "bootstrap";
+
+* {
+  color: white;
+}
+
+body {
+  background-color: rgb(24, 32, 39);
+}
