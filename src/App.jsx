@@ -9,6 +9,7 @@ function App() {
     body: "",
     public: "",
   });
+  const [isSent, setIsSent] = useState(false);
 
   function handleInputChange(e) {
     const name = e.target.name;
@@ -26,6 +27,10 @@ function App() {
     e.preventDefault();
     console.log("Form inviato!");
     createData();
+    setIsSent(true);
+    setInterval(() => {
+      setIsSent(false);
+    }, 2500);
   }
 
   function createData() {
@@ -109,9 +114,14 @@ function App() {
               Pubblico
             </label>
           </div>
-          <button type="submit" className="btn btn-light mt-3">
-            Submit
-          </button>
+          <div>
+            <button type="submit" className="btn btn-light mt-3">
+              Submit
+            </button>
+            <div className={!isSent ? "d-none" : "btn btn-success mx-3 mt-3"}>
+              Form inviato con successo!
+            </div>
+          </div>
         </form>
       </div>
     </>
