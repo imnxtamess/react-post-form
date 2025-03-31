@@ -84,6 +84,7 @@ function App() {
               aria-describedby="authorHelpId"
               placeholder="George R. R. Martin"
               onChange={(e) => handleInputChange(e)}
+              value={formData.author}
             />
             <small id="authorHelpId" className="form-text text-muted">
               Write the author's name above
@@ -101,6 +102,7 @@ function App() {
               aria-describedby="titleHelpId"
               placeholder="Game of Thrones"
               onChange={(e) => handleInputChange(e)}
+              value={formData.title}
             />
             <small id="titleHelpId" className="form-text text-muted">
               Write the title above
@@ -118,6 +120,7 @@ function App() {
               aria-describedby="bodyHelpId"
               placeholder="Lorem ipsum dolor adapare iterimo dorime iterimo adapare dorime"
               onChange={(e) => handleInputChange(e)}
+              value={formData.body}
             />
             <small id="bodyHelpId" className="form-text text-muted">
               Write the post's body above
