@@ -10,6 +10,7 @@ function App() {
     public: "",
   });
   const [isSent, setIsSent] = useState(false);
+  const [error, setError] = useState(false);
 
   function handleInputChange(e) {
     const name = e.target.name;
@@ -25,15 +26,17 @@ function App() {
 
   function handleFormSubmit(e) {
     e.preventDefault();
+    if (!formData.author || !formData.title || !formData.body) {
+      setError(true);
+      console.error("All fields are required!");
+      return;
+    }
     console.log("Form inviato!");
     createData();
-    setIsSent(true);
-    setInterval(() => {
-      setIsSent(false);
-    }, 3000);
   }
 
   function createData() {
+    setError(false);
     fetch(apiUrl, {
       method: "POST",
       headers: {
@@ -41,9 +44,28 @@ function App() {
       },
       body: JSON.stringify(formData),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      })
       .then((data) => {
-        console.log(data);
+        console.log("Success", data);
+        setFormData({
+          author: "",
+          title: "",
+          body: "",
+          public: false,
+        });
+        setIsSent(true);
+        setTimeout(() => {
+          setIsSent(false);
+        }, 3000);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        setError(`Failed to submit the form: ${error.message}`);
       });
   }
   return (
@@ -124,6 +146,13 @@ function App() {
               }
             >
               Form inviato con successo!
+            </div>
+            <div
+              className={
+                !error ? "d-none" : "btn btn-danger mx-3 mt-3 transition"
+              }
+            >
+              {error}
             </div>
           </div>
         </form>
